@@ -1,56 +1,25 @@
-[
-  {
-    "task": "1 +  _ = 2",
-    "variants": [
-      {
-        "value": 2
-      },
-      {
-        "value": 1,
-        "right": true
-      },
-      {
-        "value": 3
-      },
-      {
-        "value": 5
-      }
-    ]
+{
+  "meta": {
+    "time": 4
   },
-  {
-    "task": "305 /  _ = 61",
-    "variants": [
-      {
-        "value": 4
-      },
-      {
-        "value": 3
-      },
-      {
-        "value": 5,
-        "right": true
-      },
-      {
-        "value": 6
-      }
-    ]
-  },
-  {
-    "task": "1 +  _ = 2",
-    "variants": [
-      {
-        "value": 2
-      },
-      {
-        "value": 1,
-        "right": true
-      },
-      {
-        "value": 3
-      },
-      {
-        "value": 5
-      }
-    ]
-  }
-]
+  "issues": [
+    {
+      "task": "1 +  _ = 2",
+      "variants": [
+        {
+          "value": 2
+        },
+        {
+          "value": 1,
+          "right": true
+        },
+        {
+          "value": 3
+        },
+        {
+          "value": 5
+        }
+      ]
+    }
+  ]
+}

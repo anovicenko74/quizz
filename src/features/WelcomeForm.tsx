@@ -16,11 +16,9 @@ import { useNavigate } from 'react-router-dom'
 
 import { ConfigContext, emptyConfig } from '../context/ConfigContext'
 import { UserContext } from '../context/UserContext'
-import { IssueSchema } from '../schemas'
+import { ConfigSchema } from '../schemas'
 
-import type { Issue } from '../types'
-
-const IssuesSchema = IssueSchema.array()
+import type { Config } from '../types'
 
 export default function WelcomeForm() {
     const navigate = useNavigate()
@@ -49,10 +47,11 @@ export default function WelcomeForm() {
         setFileLoading(true)
         setFile(file)
         const reader = new FileReader()
+
         reader.onload = function (e: any) {
             try {
-                const config: Issue[] = JSON.parse(e.target.result)
-                IssuesSchema.parse(config)
+                const config: Config = JSON.parse(e.target.result)
+                ConfigSchema.parse(config)
                 setConfig(config)
                 notifications.show({
                     title: 'Успешно!',
@@ -70,6 +69,7 @@ export default function WelcomeForm() {
                 setFileLoading(false)
             }
         }
+
         reader.readAsText(file)
     }
 
@@ -148,7 +148,7 @@ export default function WelcomeForm() {
                     )}
                     <Group position="right" mt="md">
                         <Button loading={fileLoading} type="submit">
-                            {config?.length
+                            {config?.issues.length
                                 ? 'Начать по твоему сценарию'
                                 : 'Начать'}
                         </Button>
