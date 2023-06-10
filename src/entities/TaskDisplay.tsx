@@ -1,16 +1,12 @@
-import styled from '@emotion/styled'
+import { Title } from '@mantine/core'
 import React from 'react'
 
 type Props = {
     task: string
 }
 
-const Title = styled.h2({
-    fontSize: '3em',
-})
-
 function TaskDisplay({ task }: Props) {
-    return <Title>{task}</Title>
+    return <Title order={1}>{task}</Title>
 }
 
 export default TaskDisplay

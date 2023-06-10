@@ -1,6 +1,8 @@
+import { useLocalStorage } from '@mantine/hooks'
+
 import type { User } from '../types'
 import type { ReactNode } from 'react'
-import { createContext, useState } from 'react'
+import { createContext } from 'react'
 
 type ContextType = {
     user: User
@@ -20,9 +22,12 @@ export const UserContext = createContext<ContextType>(defaultValue)
 type ProviderProps = {
     children: ReactNode
 }
-
 export const UserProvider = ({ children }: ProviderProps) => {
-    const [user, setUser] = useState<User>(defaultValue.user)
+    const [user, setUser] = useLocalStorage<User>({
+        key: 'user',
+        defaultValue: defaultValue.user,
+        getInitialValueInEffect: true,
+    })
 
     return (
         <UserContext.Provider

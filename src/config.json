@@ -1,0 +1,20 @@
+[
+  {
+    "task": "1 +  _ = 2",
+    "variants": [
+      {
+        "value": 2
+      },
+      {
+        "value": 1,
+        "right": true
+      },
+      {
+        "value": 3
+      },
+      {
+        "value": 5
+      }
+    ]
+  }
+]

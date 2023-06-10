@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Title } from '@mantine/core'
 
 import type { Variant } from '../types'
 
@@ -19,7 +20,6 @@ const Card = styled.div((props: any) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '3rem',
     cursor: 'pointer',
     userSelect: 'none',
 }))
@@ -53,7 +53,7 @@ const AnswerCards = ({ variants, onClick: handleClick }: Props) => {
                         onClick={(e: Event) => onClick(e, v)}
                         color={colors[i % colors.length]}
                     >
-                        {v.value}
+                        <Title order={2}>{v.value}</Title>
                     </Card>
                 </Item>
             ))}

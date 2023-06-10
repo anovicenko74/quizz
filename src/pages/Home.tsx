@@ -1,23 +1,23 @@
 import styled from '@emotion/styled'
 import React from 'react'
 
-import WelcomeForm from '../entities/WelcomeForm'
-import { Wrapper } from '../shared/Wrapper'
+import WelcomeForm from '../features/WelcomeForm'
+import Header from '../widgets/Header'
 
 const FormContainer = styled.div({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    minHeight: '100vh',
 })
 
 const Home = () => {
     return (
         <>
-            <Wrapper>
-                <FormContainer>
-                    <WelcomeForm />
-                </FormContainer>
-            </Wrapper>
+            <Header />
+            <FormContainer>
+                <WelcomeForm />
+            </FormContainer>
         </>
     )
 }
