@@ -14,7 +14,10 @@ const defaultValue: ContextType = {
         name: '',
         age: 0,
     },
-    setUser: (u) => null,
+    setUser: (u: User) => {
+        const foo = u
+        return null
+    },
 }
 
 export const UserContext = createContext<ContextType>(defaultValue)
