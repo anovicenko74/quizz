@@ -1,24 +1,16 @@
-import styled from '@emotion/styled'
+import { Box } from '@mantine/core'
 import React from 'react'
 
 import WelcomeForm from '../features/WelcomeForm'
-import Header from '../widgets/Header'
-
-const FormContainer = styled.div({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100vh',
-})
+import { ContentCenter } from '../shared/ContentCenter'
 
 const Home = () => {
     return (
-        <>
-            <Header />
-            <FormContainer>
+        <ContentCenter>
+            <Box pt="20px" pb="20px">
                 <WelcomeForm />
-            </FormContainer>
-        </>
+            </Box>
+        </ContentCenter>
     )
 }
 

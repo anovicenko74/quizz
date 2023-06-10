@@ -76,6 +76,7 @@ export default function WelcomeForm() {
     const clearFile = () => {
         setFile(null)
         setConfig(emptyConfig)
+        notifications.clean()
         resetRef.current?.()
     }
 

@@ -11,6 +11,9 @@ import RootStyleProvider from './providers/RootStyleProvider'
 
 import { Notifications } from '@mantine/notifications'
 
+import { Wrapper } from './shared/Wrapper'
+import Header from './widgets/Header'
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -29,7 +32,10 @@ root.render(
             <ConfigProvider>
                 <UserProvider>
                     <Notifications />
-                    <RouterProvider router={router} />
+                    <Wrapper>
+                        <Header />
+                        <RouterProvider router={router} />
+                    </Wrapper>
                 </UserProvider>
             </ConfigProvider>
         </RootStyleProvider>

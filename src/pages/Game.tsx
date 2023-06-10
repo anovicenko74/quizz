@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Container, Progress } from '@mantine/core'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,8 +8,6 @@ import { UserContext } from '../context/UserContext'
 import AnswerCards from '../entities/AnswerCards'
 import Result from '../entities/Result'
 import TaskDisplay from '../entities/TaskDisplay'
-import { Wrapper } from '../shared/Wrapper'
-import Header from '../widgets/Header'
 
 import type { Issue, Variant } from '../types'
 
@@ -42,17 +41,22 @@ const MainItem = styled.div({
 
 const Footer = styled.div({
     padding: '0 0 100px 0',
+    '@media (max-width: 768px)': {
+        padding: '0 0 30px 0',
+    },
 })
 
 function Game() {
     const { config } = useContext(ConfigContext)
     const currentConfig = config?.length ? config : defaultConfig
+
     const [issue, setIssue] = useState<Issue | null>(currentConfig[0])
-    const [mistakesCount, setMistakesCount] = useState(0)
     const issueIndex = useRef(0)
-    const isNext = currentConfig[issueIndex.current + 1] ? true : false
+
+    const [mistakesCount, setMistakesCount] = useState(0)
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
+    const isNext = currentConfig[issueIndex.current + 1] ? true : false
 
     const onVariantClick = (_: Event, variant: Variant) => {
         if (variant.right && isNext) {
@@ -72,24 +76,33 @@ function Game() {
     }, [user])
 
     return (
-        <Wrapper>
-            <Header />
+        <>
             {issue ? (
                 <>
                     <MainItem>
                         <TaskDisplay task={issue.task} />
                     </MainItem>
                     <Footer>
-                        <AnswerCards
-                            onClick={onVariantClick}
-                            variants={issue.variants}
-                        />
+                        <Container>
+                            <AnswerCards
+                                onClick={onVariantClick}
+                                variants={issue.variants}
+                            />
+                            <Progress
+                                mt={'30px'}
+                                value={
+                                    (issueIndex.current /
+                                        currentConfig.length) *
+                                    100
+                                }
+                            />
+                        </Container>
                     </Footer>
                 </>
             ) : (
                 <Result mistakesCount={mistakesCount} />
             )}
-        </Wrapper>
+        </>
     )
 }
 

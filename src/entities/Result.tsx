@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { ConfigContext, emptyConfig } from '../context/ConfigContext'
 import { UserContext } from '../context/UserContext'
+import { ContentCenter } from '../shared/ContentCenter'
 
 type Props = {
     mistakesCount: number
@@ -29,8 +30,8 @@ function Result({ mistakesCount }: Props) {
     const { user } = useContext(UserContext)
     const { setConfig } = useContext(ConfigContext)
     return (
-        <Wrapper>
-            <Stack>
+        <ContentCenter>
+            <Stack align="center">
                 <Title ta={'center'} order={3}>
                     Количество ошибок: {mistakesCount}
                 </Title>
@@ -41,7 +42,7 @@ function Result({ mistakesCount }: Props) {
                     <Button>Вернуться назад</Button>
                 </Link>
             </Stack>
-        </Wrapper>
+        </ContentCenter>
     )
 }
 
