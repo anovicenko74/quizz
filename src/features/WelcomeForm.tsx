@@ -29,7 +29,7 @@ export default function WelcomeForm() {
     const resetRef = useRef<() => void>(null)
     const { user, setUser } = useContext(UserContext)
     const { config, setConfig } = useContext(ConfigContext)
-    console.log(config)
+
     const form = useForm({
         initialValues: {
             name: user.name,
@@ -80,6 +80,7 @@ export default function WelcomeForm() {
     }
 
     useEffect(() => form.setValues(user), [user])
+    useEffect(() => () => notifications.clean(), [])
 
     return (
         <Box maw={300} mx="auto">
