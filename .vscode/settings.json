@@ -1,0 +1,24 @@
+{
+  // Formater settings
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+
+  // Path intellisense settings
+  "javascript.suggest.paths": false,
+  "typescript.suggest.paths": false,
+  "path-intellisense.extensionOnImport": false,
+
+  // Material Icon Theme customizations
+  "material-icon-theme.files.associations": {
+    "index.ts": "typescript-def",
+    "stories.tsx": "storybook",
+    "index.tsx": "react",
+    "page.tsx": "react"
+  },
+  "material-icon-theme.folders.associations": {
+    "ui": "client",
+    "processes": "generator",
+    "features": "changesets"
+  }
+}
