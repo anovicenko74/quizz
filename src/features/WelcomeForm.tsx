@@ -10,13 +10,17 @@ import {
     Stack,
 } from '@mantine/core'
 import { useForm } from '@mantine/form'
+import { notifications } from '@mantine/notifications'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { ConfigContext, emptyConfig } from '../context/ConfigContext'
 import { UserContext } from '../context/UserContext'
+import { IssueSchema } from '../schemas'
 
 import type { Issue } from '../types'
+
+const IssuesSchema = IssueSchema.array()
 
 export default function WelcomeForm() {
     const navigate = useNavigate()
@@ -46,9 +50,25 @@ export default function WelcomeForm() {
         setFile(file)
         const reader = new FileReader()
         reader.onload = function (e: any) {
-            const config: Issue[] = JSON.parse(e.target.result)
-            setConfig(config)
-            setFileLoading(false)
+            try {
+                const config: Issue[] = JSON.parse(e.target.result)
+                IssuesSchema.parse(config)
+                setConfig(config)
+                notifications.show({
+                    title: 'Успешно!',
+                    message: 'Это и правда подходящий конфиг 👍',
+                    color: 'green',
+                })
+            } catch (e) {
+                clearFile()
+                notifications.show({
+                    title: 'Неподходящий файл',
+                    message: 'Попробуй другой конфиг! 🤥',
+                    color: 'red',
+                })
+            } finally {
+                setFileLoading(false)
+            }
         }
         reader.readAsText(file)
     }
@@ -124,7 +144,6 @@ export default function WelcomeForm() {
                             )}
                         </>
                     )}
-
                     <Group position="right" mt="md">
                         <Button loading={fileLoading} type="submit">
                             {config?.length

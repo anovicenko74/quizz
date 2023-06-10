@@ -9,6 +9,8 @@ import Game from './pages/Game'
 import Home from './pages/Home'
 import RootStyleProvider from './providers/RootStyleProvider'
 
+import { Notifications } from '@mantine/notifications'
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -26,6 +28,7 @@ root.render(
         <RootStyleProvider>
             <ConfigProvider>
                 <UserProvider>
+                    <Notifications />
                     <RouterProvider router={router} />
                 </UserProvider>
             </ConfigProvider>

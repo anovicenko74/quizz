@@ -3,6 +3,7 @@ import { Button, Stack, Title } from '@mantine/core'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
+import { ConfigContext, emptyConfig } from '../context/ConfigContext'
 import { UserContext } from '../context/UserContext'
 
 type Props = {
@@ -26,7 +27,7 @@ const getAdvice = (mistakesCount: number) => {
 
 function Result({ mistakesCount }: Props) {
     const { user } = useContext(UserContext)
-
+    const { setConfig } = useContext(ConfigContext)
     return (
         <Wrapper>
             <Stack>
@@ -36,7 +37,7 @@ function Result({ mistakesCount }: Props) {
                 <Title ta={'center'} order={2}>{`${getAdvice(mistakesCount)}, ${
                     user.name
                 }!`}</Title>
-                <Link to={'/'}>
+                <Link to={'/'} onClick={() => setConfig(emptyConfig)}>
                     <Button>Вернуться назад</Button>
                 </Link>
             </Stack>
