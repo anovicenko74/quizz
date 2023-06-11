@@ -148,9 +148,9 @@ export default function WelcomeForm() {
                     )}
                     <Group position="right" mt="md">
                         <Button loading={fileLoading} type="submit">
-                            {config?.issues.length
-                                ? 'Начать по твоему сценарию'
-                                : 'Начать'}
+                            {config === emptyConfig
+                                ? 'Начать'
+                                : 'Начать по твоему сценарию'}
                         </Button>
                     </Group>
                 </Stack>
