@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Container, Progress } from '@mantine/core'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { ConfigContext, emptyConfig } from '../context/ConfigContext'
@@ -9,7 +9,7 @@ import AnswerCards from '../entities/AnswerCards'
 import Result from '../entities/Result'
 import TaskDisplay from '../entities/TaskDisplay'
 
-import type { Issue, Variant } from '../types'
+import type { Variant } from '../types'
 
 const MainItem = styled.div({
     flex: '1 0 100%',
@@ -29,21 +29,17 @@ function Game() {
     const { config } = useContext(ConfigContext)
     const currentConfig = config?.issues?.length ? config : emptyConfig
 
-    const [issue, setIssue] = useState<Issue | null>(currentConfig.issues[0])
-    const issueIndex = useRef(0)
-
+    const [issueIndex, setIssueIndex] = useState<number>(0)
     const [mistakesCount, setMistakesCount] = useState(0)
+
+    const issue = currentConfig.issues[issueIndex]
+    const isEnd = currentConfig.issues.length <= issueIndex
+
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
-    const isNext = currentConfig.issues[issueIndex.current + 1] ? true : false
 
     const switchIssue = () => {
-        if (isNext) {
-            issueIndex.current += 1
-            setIssue(currentConfig.issues[issueIndex.current])
-        } else {
-            setIssue(null)
-        }
+        setIssueIndex((ii) => ++ii)
     }
 
     const timeSwitch = () => {
@@ -62,7 +58,7 @@ function Game() {
 
     return (
         <>
-            {issue ? (
+            {!isEnd ? (
                 <>
                     <MainItem>
                         <TaskDisplay
@@ -73,6 +69,7 @@ function Game() {
                             }
                             task={issue.task}
                             onTimer={timeSwitch}
+                            issueIndex={issueIndex}
                         />
                     </MainItem>
                     <Footer>
@@ -84,8 +81,7 @@ function Game() {
                             <Progress
                                 mt={'30px'}
                                 value={
-                                    (issueIndex.current /
-                                        currentConfig.issues.length) *
+                                    (issueIndex / currentConfig.issues.length) *
                                     100
                                 }
                             />

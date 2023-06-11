@@ -8,9 +8,40 @@ type ContextType = {
 }
 
 export const emptyConfig: Config = {
-    issues: [],
+    issues: [
+        {
+            task: 'Нюхай ...!',
+            variants: [
+                {
+                    value: 'кота',
+                },
+                {
+                    value: 'псину',
+                },
+                {
+                    value: 'бебру',
+                    right: true,
+                },
+            ],
+        },
+        {
+            task: 'Игра 2013 года',
+            variants: [
+                {
+                    value: 'Fallout 3',
+                },
+                { value: 'The last of us', right: true },
+                {
+                    value: 'Metal Gear Solid V',
+                },
+                {
+                    value: 'Гульман 4',
+                },
+            ],
+        },
+    ],
     meta: {
-        time: 5,
+        time: 3,
     },
 }
 
